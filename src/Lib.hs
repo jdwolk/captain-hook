@@ -1,6 +1,3 @@
-module Lib
-    ( someFunc
-    ) where
+{-# LANGUAGE OverloadedStrings #-}
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+module Lib where

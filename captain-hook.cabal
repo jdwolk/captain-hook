@@ -17,8 +17,21 @@ library
   hs-source-dirs:      src
   exposed-modules:     Lib
                      , CaptainHook.Service
-  build-depends:       base >= 4.7 && < 5
+                     , CaptainHook.Types
+                     , CaptainHook.Publishers.AWS.CloudFront
+  build-depends:       amazonka == 1.3.*
+                     , amazonka-core == 1.3.*
+                     , amazonka-cloudfront == 1.3.*
+                     , base >= 4.7 && < 5
+                     , bytestring == 0.10.*
+                     , dotenv == 0.1.*
+                     , time == 1.*
+                     , lens == 4.13.*
+                     , network-uri == 2.*
+                     , transformers == 0.*
+                     , text
   default-language:    Haskell2010
+  extensions:          OverloadedStrings
 
 executable captain-hook-exe
   hs-source-dirs:      app
@@ -27,6 +40,7 @@ executable captain-hook-exe
   build-depends:       base
                      , captain-hook
   default-language:    Haskell2010
+  extensions:          OverloadedStrings
 
 test-suite captain-hook-test
   type:                exitcode-stdio-1.0
@@ -35,8 +49,10 @@ test-suite captain-hook-test
   build-depends:       base
                      , captain-hook
                      , hspec == 2.*
+                     , network-uri == 2.*
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
+  extensions:          OverloadedStrings
 
 source-repository head
   type:     git
