@@ -19,7 +19,8 @@ import           Network.AWS                 (AccessKey (..),
 import           Network.AWS.CloudFront      (Distribution (..), dId, dStatus,
                                               gdrsDistribution, getDistribution)
 import qualified Network.AWS.Data.ByteString as AwsBS
-import           System.Environment          (getEnv)
+
+import           CaptainHook.Config          (getEnvVar)
 
 data DistStatus = Deployed | InProgress deriving (Eq, Show)
 
@@ -68,9 +69,6 @@ parseDistStatus dist =
     "Deployed" -> Deployed
     _          -> InProgress
   where status = view dStatus dist
-
-getEnvVar :: IsString s => String -> IO s
-getEnvVar varName = fmap fromString $ getEnv varName
 
 getAWSConfig :: IO AWSConfig
 getAWSConfig = do
